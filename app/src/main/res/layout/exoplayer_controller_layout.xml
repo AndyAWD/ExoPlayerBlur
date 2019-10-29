@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <!--因為不要顯示控制清單，所以用一個空的取代，以後想要自定的話在這個頁面新增就好-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
