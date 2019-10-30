@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">ExoPlayerBlur</string>
     <string name="videoBlurContentDescription">VideoBlur</string>
+    <string name="exoPlayerNormalPlay">ExoPlayer正常播放</string>
+    <string name="exoPlayerBlurPlay">ExoPlayer模糊播放</string>
+    <string name="videoViewNormaPlay">VideoView正常播放</string>
 </resources>

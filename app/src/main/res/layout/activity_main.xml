@@ -4,46 +4,45 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/hexColor046_LightBlue"
         tools:context=".MainActivity">
 
-    <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/pvAmVideo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAmExoPlayerNormalPlay"
+            style="@style/PlayerSelect"
+            android:text="@string/exoPlayerNormalPlay"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:resize_mode="zoom"
-            app:surface_type="texture_view"
-            tools:visibility="visible" />
-    <!--app:controller_layout_id="@layout/exoplayer_controller_layout"-->
-    <!--app:surface_type="texture_view"-->
+            app:layout_constraintRight_toLeftOf="@+id/tvAmExoPlayerBlurPlay"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <TextureView
-            android:id="@+id/tvAmVideo"
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAmExoPlayerBlurPlay"
+            style="@style/PlayerSelect"
+            android:text="@string/exoPlayerBlurPlay"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintLeft_toRightOf="@+id/tvAmExoPlayerNormalPlay"
+            app:layout_constraintRight_toLeftOf="@+id/tvAmVideoViewNormaPlay"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tvAmVideoViewNormaPlay"
+            style="@style/PlayerSelect"
+            android:text="@string/videoViewNormaPlay"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintLeft_toRightOf="@+id/tvAmExoPlayerBlurPlay"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clAmVideoGroup"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
-
-    <ImageView
-            android:id="@+id/ivAmVideoBlur"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_margin="@dimen/magic_8dp"
             android:background="@color/hexColor066_MediumAquamarine"
-            android:contentDescription="@string/videoBlurContentDescription"
-            android:scaleType="fitXY"
-            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/hexColor066_MediumAquamarine"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toBottomOf="@+id/tvAmExoPlayerBlurPlay" />
 </androidx.constraintlayout.widget.ConstraintLayout>
