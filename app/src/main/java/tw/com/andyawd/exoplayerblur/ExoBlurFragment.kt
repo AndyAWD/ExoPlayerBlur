@@ -5,6 +5,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.*
 import android.widget.ImageView
+import android.widget.SeekBar
+import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.*
@@ -25,19 +27,25 @@ import com.zhouwei.blurlibrary.EasyBlur
 import java.io.IOException
 
 class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListener,
-    TextureView.SurfaceTextureListener {
+        TextureView.SurfaceTextureListener {
 
     private var pvFebVideo: PlayerView? = null
     private var tvFebVideo: TextureView? = null
     private var ivFebVideoBlur: ImageView? = null
+    private var tvFebBlurText: TextView? = null
+    private var sbFebBlur: SeekBar? = null
+    private var tvFebCompressionText: TextView? = null
+    private var sbFebCompression: SeekBar? = null
 
     private var simpleExoPlayer: SimpleExoPlayer? = null
     private var isPlaying = false
+    private var blur = 25
+    private var compression = 0
 
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_exo_blur, container, false)
 
@@ -54,9 +62,9 @@ class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListene
 
         if (tvFebVideo?.isAvailable!!) {
             onSurfaceTextureAvailable(
-                tvFebVideo?.surfaceTexture,
-                tvFebVideo?.width!!.toInt(),
-                tvFebVideo?.width!!.toInt()
+                    tvFebVideo?.surfaceTexture,
+                    tvFebVideo?.width!!.toInt(),
+                    tvFebVideo?.width!!.toInt()
             )
         }
 
@@ -111,10 +119,10 @@ class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListene
     }
 
     override fun getRetryDelayMsFor(
-        dataType: Int,
-        loadDurationMs: Long,
-        exception: IOException?,
-        errorCount: Int
+            dataType: Int,
+            loadDurationMs: Long,
+            exception: IOException?,
+            errorCount: Int
     ): Long {
         return 0
     }
@@ -124,10 +132,10 @@ class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListene
     }
 
     override fun getBlacklistDurationMsFor(
-        dataType: Int,
-        loadDurationMs: Long,
-        exception: IOException?,
-        errorCount: Int
+            dataType: Int,
+            loadDurationMs: Long,
+            exception: IOException?,
+            errorCount: Int
     ): Long {
         return 0
     }
@@ -138,8 +146,8 @@ class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListene
 
     override fun onSurfaceTextureUpdated(surface: SurfaceTexture?) {
         val bitmapBlur =
-            EasyBlur.with(EBApplication.context()).bitmap(tvFebVideo?.bitmap).scale(10).radius(25)
-                .blur()
+                EasyBlur.with(EBApplication.context()).bitmap(tvFebVideo?.bitmap).scale(compression).radius(blur)
+                        .blur()
         ivFebVideoBlur?.setImageBitmap(bitmapBlur)
     }
 
@@ -155,10 +163,16 @@ class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListene
         pvFebVideo = view.findViewById(R.id.pvFebVideo)
         tvFebVideo = view.findViewById(R.id.tvFebVideo)
         ivFebVideoBlur = view.findViewById(R.id.ivFebVideoBlur)
+        tvFebBlurText = view.findViewById(R.id.tvFebBlurText)
+        sbFebBlur = view.findViewById(R.id.sbFebBlur)
+        tvFebCompressionText = view.findViewById(R.id.tvFebCompressionText)
+        sbFebCompression = view.findViewById(R.id.sbFebCompression)
     }
 
     private fun initListener() {
         tvFebVideo?.surfaceTextureListener = this
+        sbFebBlur?.setOnSeekBarChangeListener(sbFebBlurSeekBarChange)
+        sbFebCompression?.setOnSeekBarChangeListener(sbFebCompressionSeekBarChange)
     }
 
     private fun initExoPlayer() {
@@ -166,7 +180,7 @@ class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListene
         val trackSelector: TrackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
         val loadControl = DefaultLoadControl()
         simpleExoPlayer =
-            ExoPlayerFactory.newSimpleInstance(EBApplication.context(), trackSelector, loadControl)
+                ExoPlayerFactory.newSimpleInstance(EBApplication.context(), trackSelector, loadControl)
 
         simpleExoPlayer?.prepare(getMediaSource(Constants.VIDEO_URL.toUri()))
         simpleExoPlayer?.addListener(this)
@@ -179,16 +193,47 @@ class ExoBlurFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListene
 
     private fun getMediaSource(uri: Uri): ProgressiveMediaSource {
         val defaultBandwidthMeter: DefaultBandwidthMeter =
-            DefaultBandwidthMeter.Builder(EBApplication.context()).build()
+                DefaultBandwidthMeter.Builder(EBApplication.context()).build()
         val dataSourceFactory: DataSource.Factory = DefaultDataSourceFactory(
-            EBApplication.context(),
-            Util.getUserAgent(EBApplication.context(), resources.getString(R.string.app_name)),
-            defaultBandwidthMeter
+                EBApplication.context(),
+                Util.getUserAgent(EBApplication.context(), resources.getString(R.string.app_name)),
+                defaultBandwidthMeter
         )
         val extractorsFactory: ExtractorsFactory = DefaultExtractorsFactory()
 
         return ProgressiveMediaSource.Factory(dataSourceFactory, extractorsFactory)
-            .setLoadErrorHandlingPolicy(this)
-            .createMediaSource(uri)
+                .setLoadErrorHandlingPolicy(this)
+                .createMediaSource(uri)
     }
+
+    private val sbFebBlurSeekBarChange = object : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+            tvFebBlurText?.text = EBApplication.context().resources.getString(R.string.compressionText, p1, 25)
+            blur = p1
+        }
+
+        override fun onStartTrackingTouch(p0: SeekBar?) {
+
+        }
+
+        override fun onStopTrackingTouch(p0: SeekBar?) {
+
+        }
+    }
+
+    private val sbFebCompressionSeekBarChange = object : SeekBar.OnSeekBarChangeListener {
+        override fun onProgressChanged(p0: SeekBar?, p1: Int, p2: Boolean) {
+            tvFebCompressionText?.text = EBApplication.context().resources.getString(R.string.compressionText, p1, 100)
+            compression = p1
+        }
+
+        override fun onStartTrackingTouch(p0: SeekBar?) {
+
+        }
+
+        override fun onStopTrackingTouch(p0: SeekBar?) {
+
+        }
+    }
+
 }

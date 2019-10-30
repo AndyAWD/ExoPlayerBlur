@@ -1,47 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/hexColor106_IndianRed">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/hexColor106_IndianRed">
 
     <com.google.android.exoplayer2.ui.PlayerView
-            android:id="@+id/pvFebVideo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:resize_mode="zoom"
-            app:surface_type="texture_view"
-            tools:visibility="gone" />
+        android:id="@+id/pvFebVideo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:resize_mode="zoom"
+        app:surface_type="texture_view"
+        tools:visibility="gone" />
 
     <TextureView
-            android:id="@+id/tvFebVideo"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:visibility="visible" />
+        android:id="@+id/tvFebVideo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
 
     <ImageView
-            android:id="@+id/ivFebVideoBlur"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:background="@color/hexColor066_MediumAquamarine"
-            android:contentDescription="@string/videoBlurContentDescription"
-            android:scaleType="fitXY"
-            android:visibility="visible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/hexColor066_MediumAquamarine"
-            tools:visibility="visible" />
+        android:id="@+id/ivFebVideoBlur"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/hexColor066_MediumAquamarine"
+        android:contentDescription="@string/videoBlurContentDescription"
+        android:scaleType="fitXY"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:background="@color/hexColor066_MediumAquamarine"
+        tools:visibility="visible" />
+
+    <TextView
+        android:id="@+id/tvFebBlurText"
+        style="@style/BlurSeekSelect"
+        app:layout_constraintBottom_toTopOf="@+id/sbFebBlur"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/sbFebBlur"
+        app:layout_constraintRight_toRightOf="@+id/sbFebBlur"
+        tools:text="模糊度 25/25" />
+
+    <SeekBar
+        android:id="@+id/sbFebBlur"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:max="25"
+        android:progress="25"
+        app:layout_constraintBottom_toTopOf="@+id/sbFebCompression"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvFebCompressionText"
+        style="@style/BlurSeekSelect"
+        app:layout_constraintBottom_toTopOf="@+id/sbFebCompression"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/sbFebCompression"
+        app:layout_constraintRight_toRightOf="@+id/sbFebCompression"
+        tools:text="壓縮比 0/100" />
+
+    <SeekBar
+        android:id="@+id/sbFebCompression"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:max="100"
+        android:progress="0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbFebBlur"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
