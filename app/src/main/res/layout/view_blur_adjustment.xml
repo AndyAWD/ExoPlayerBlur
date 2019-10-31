@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/metroColor001_252525">
+
+    <TextView
+        android:id="@+id/tvFebBlurText"
+        style="@style/AdjustmentTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/sbFebBlur"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/sbFebBlur"
+        app:layout_constraintRight_toRightOf="@+id/sbFebBlur"
+        app:layout_constraintTop_toTopOf="@+id/sbFebBlur"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="模糊度 25/25" />
+
+    <SeekBar
+        android:id="@+id/sbFebBlur"
+        style="@style/AdjustmentSeekBar"
+        android:max="25"
+        android:progress="25"
+        app:layout_constraintBottom_toTopOf="@+id/sbFebCompression"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/tvFebCompressionText"
+        style="@style/AdjustmentTextView"
+        app:layout_constraintBottom_toBottomOf="@+id/sbFebCompression"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@+id/sbFebCompression"
+        app:layout_constraintRight_toRightOf="@+id/sbFebCompression"
+        app:layout_constraintTop_toTopOf="@+id/sbFebCompression"
+        app:layout_constraintVertical_bias="0.0"
+        tools:text="壓縮比 0/100" />
+
+    <SeekBar
+        android:id="@+id/sbFebCompression"
+        style="@style/AdjustmentSeekBar"
+        android:max="100"
+        android:progress="10"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/sbFebBlur"
+        app:layout_constraintVertical_bias="1.0" />
+</androidx.constraintlayout.widget.ConstraintLayout>

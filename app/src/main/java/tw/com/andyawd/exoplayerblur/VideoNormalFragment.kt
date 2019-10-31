@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import android.widget.MediaController
 import android.widget.ProgressBar
 import android.widget.VideoView
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import tw.com.andyawd.andyawdlibrary.AWDLog
 
@@ -24,7 +23,6 @@ class VideoNormalFragment : Fragment(), MediaPlayer.OnErrorListener, MediaPlayer
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_video_normal, container, false)
-        AWDLog.d("VideoView正常播放 onCreateView")
 
         initComponent(view)
         initListener()
@@ -49,38 +47,33 @@ class VideoNormalFragment : Fragment(), MediaPlayer.OnErrorListener, MediaPlayer
 
         val mediaController = MediaController(activity)
         vvFvnVideo?.setMediaController(mediaController)
-        vvFvnVideo?.setVideoURI(Constants.VIDEO_URL.toUri())
+        vvFvnVideo?.setVideoURI(VideoPathManager.instance.videoViewRaw(R.raw.mv))
     }
 
     override fun onStart() {
         super.onStart()
-        AWDLog.d("VideoView正常播放 onStart")
 
         vvFvnVideo?.start()
     }
 
     override fun onResume() {
         super.onResume()
-        AWDLog.d("VideoView正常播放 onResume")
 
         vvFvnVideo?.resume()
     }
 
     override fun onPause() {
         super.onPause()
-        AWDLog.d("VideoView正常播放 onPause")
 
         vvFvnVideo?.pause()
     }
 
     override fun onStop() {
         super.onStop()
-        AWDLog.d("VideoView正常播放 onStop")
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        AWDLog.d("VideoView正常播放 onDestroy")
     }
 
     override fun onError(mp: MediaPlayer?, what: Int, extra: Int): Boolean {

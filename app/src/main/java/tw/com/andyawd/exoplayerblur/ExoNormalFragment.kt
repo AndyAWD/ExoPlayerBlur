@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
 import com.google.android.exoplayer2.*
 import com.google.android.exoplayer2.extractor.DefaultExtractorsFactory
@@ -136,7 +135,7 @@ class ExoNormalFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListe
         val progressiveMediaSource: ProgressiveMediaSource =
             ProgressiveMediaSource.Factory(dataSourceFactory, extractorsFactory)
                 .setLoadErrorHandlingPolicy(this)
-                .createMediaSource(Constants.VIDEO_URL.toUri())
+                .createMediaSource(VideoPathManager.instance.exoPlayerRaw(R.raw.mv))
 
         simpleExoPlayer =
             ExoPlayerFactory.newSimpleInstance(EBApplication.context(), trackSelector, loadControl)
@@ -145,6 +144,7 @@ class ExoNormalFragment : Fragment(), LoadErrorHandlingPolicy, Player.EventListe
         simpleExoPlayer?.addListener(this)
         simpleExoPlayer?.playWhenReady = true
         simpleExoPlayer?.repeatMode = Player.REPEAT_MODE_ALL
+        simpleExoPlayer?.volume = 1.0f
 
         isPlaying = simpleExoPlayer?.playWhenReady!!
 

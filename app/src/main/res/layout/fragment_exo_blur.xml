@@ -36,7 +36,7 @@
         android:layout_height="0dp"
         android:background="@color/hexColor066_MediumAquamarine"
         android:contentDescription="@string/videoBlurContentDescription"
-        android:scaleType="fitXY"
+        android:scaleType="fitCenter"
         android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -44,49 +44,4 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:background="@color/hexColor066_MediumAquamarine"
         tools:visibility="visible" />
-
-    <TextView
-        android:id="@+id/tvFebBlurText"
-        style="@style/BlurSeekSelect"
-        app:layout_constraintBottom_toTopOf="@+id/sbFebBlur"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="@+id/sbFebBlur"
-        app:layout_constraintRight_toRightOf="@+id/sbFebBlur"
-        tools:text="模糊度 25/25" />
-
-    <SeekBar
-        android:id="@+id/sbFebBlur"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:max="25"
-        android:progress="25"
-        app:layout_constraintBottom_toTopOf="@+id/sbFebCompression"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <TextView
-        android:id="@+id/tvFebCompressionText"
-        style="@style/BlurSeekSelect"
-        app:layout_constraintBottom_toTopOf="@+id/sbFebCompression"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintLeft_toLeftOf="@+id/sbFebCompression"
-        app:layout_constraintRight_toRightOf="@+id/sbFebCompression"
-        tools:text="壓縮比 0/100" />
-
-    <SeekBar
-        android:id="@+id/sbFebCompression"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:max="100"
-        android:progress="0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/sbFebBlur"
-        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
