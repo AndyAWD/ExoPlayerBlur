@@ -4,6 +4,9 @@
 
 使用[ExoPlayer](https://github.com/google/ExoPlayer)播放影片，並利用Bitmap完成影片模糊，ExoPlayer版本 2.10.5
 
+My Blogger
+[http://anandydy529.blogspot.com/2019/11/exoplayerbitmap.html](http://anandydy529.blogspot.com/2019/11/exoplayerbitmap.html)
+
 <img src="videoSample.gif" width="33.33%">
 
 ## Base Setting
