@@ -4,6 +4,8 @@
 
 使用[ExoPlayer](https://github.com/google/ExoPlayer)播放影片，並利用Bitmap完成影片模糊，ExoPlayer版本 2.10.5
 
+![videoSample](videoSample.gif)
+
 ## Base Setting
 ````
 //build.gradle
