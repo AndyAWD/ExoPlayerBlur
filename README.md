@@ -1,4 +1,5 @@
 # ExoPlayerBlur
+
 ***
 
 使用[ExoPlayer](https://github.com/google/ExoPlayer)播放影片，並利用Bitmap完成影片模糊，ExoPlayer版本 2.10.5
@@ -119,6 +120,8 @@ textureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener
     }
 }
 ````
+
+***
 
 ## Special Thanks to
 * [ExoPlayerFilter](https://github.com/MasayukiSuda/ExoPlayerFilter)
