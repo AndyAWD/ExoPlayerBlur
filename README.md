@@ -128,3 +128,4 @@ textureView.surfaceTextureListener = object : TextureView.SurfaceTextureListener
 ## Special Thanks to
 * [ExoPlayerFilter](https://github.com/MasayukiSuda/ExoPlayerFilter)
 * [ExoPlayerVideoBlur](https://github.com/liosen/ExoPlayerVideoBlur)
+* [EasyBlur](https://github.com/pinguo-zhouwei/EasyBlur)
